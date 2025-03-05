@@ -1,54 +1,71 @@
-class Vehiculo:
-    MARCAS_CARROS_PERMITIDAS = ["Toyota", "Renault", "Kia", "Chevrolet", "BMW", "Mercedes Benz", "Volvo", "Audi", "Mini", "Porsche", "Land Rover", "Lexus", "Ds", "Cadillac"]
-    MARCAS_MOTOS_PERMITIDAS = ["Honda", "Suzuki", "Yamaha", "BMW"]
+import time
 
-    def __init__(self, marca, tipo_vehiculo, nivel_combustible):
-        if tipo_vehiculo == "carro" and marca not in Vehiculo.MARCAS_CARROS_PERMITIDAS:
-            raise ValueError(f"Marca {marca} no permitida para carros.")
-        elif tipo_vehiculo == "moto" and marca not in Vehiculo.MARCAS_MOTOS_PERMITIDAS:
-            raise ValueError(f"Marca {marca} no permitida para motos.")
+class Vehiculo:
+    MARCAS_CARROS_PERMITIDAS = ["Chevrolet", "Toyota", "Renault", "Kia", "BMW", "Mazda", "Hyundai", "Peugeot", "Audi", "Volvo"]
+    MARCAS_MOTOS_PERMITIDAS = ["Yamaha", "Suzuki", "Kawasaki", "Honda", "Ducati"]
+
+    def __init__(self, marca, tipo, combustible):
+        if tipo == "carro" and marca not in Vehiculo.MARCAS_CARROS_PERMITIDAS:
+            raise ValueError(f"❌ La marca '{marca}' no está permitida para carros.")
+        elif tipo == "moto" and marca not in Vehiculo.MARCAS_MOTOS_PERMITIDAS:
+            raise ValueError(f"❌ La marca '{marca}' no está permitida para motos.")
+        if combustible < 0 or combustible > 100:
+            raise ValueError("❌ El nivel de combustible debe estar entre 0% y 100%.")
         self.marca = marca
-        self.tipo_vehiculo = tipo_vehiculo
-        self.nivel_combustible = nivel_combustible
+        self.tipo = tipo
+        self.combustible = combustible
 
     def encender(self):
-        if self.nivel_combustible < 19:
-            print(f"El {self.tipo_vehiculo} {self.marca} necesita gasolina.")
+        print("🔑 Intentando encender el vehículo...")
+        time.sleep(1)
+        if self.combustible < 10:
+            print(f"⛽ URGENTE: El {self.tipo} {self.marca} tiene menos del 10% de combustible. ¡Ve a la gasolinera! 🚨")
+        elif self.combustible < 19:
+            print(f"⚠️ Advertencia: El {self.tipo} {self.marca} tiene bajo nivel de combustible.")
         else:
-            print(f"El {self.tipo_vehiculo} {self.marca} está encendido.")
+            print(f"✅ El {self.tipo} {self.marca} está encendido y listo para salir.")
 
     def arrancar(self):
-        print(f"El {self.tipo_vehiculo} {self.marca} está arrancando con {self.nivel_combustible}% de combustible.")
+        print("🚀 Preparando para arrancar...")
+        time.sleep(1)
+        print(f"🚗 Arrancando el {self.tipo} {self.marca}. Combustible actual: {self.combustible}%.")
 
     def conducir(self):
-        while self.nivel_combustible > 0:
-            self.nivel_combustible -= 1
-            print(f"Conduciendo... Nivel de combustible: {self.nivel_combustible}%")
-            if self.nivel_combustible < 19:
-                print(f"Advertencia: El {self.tipo_vehiculo} {self.marca} necesita gasolina.")
-            if self.nivel_combustible == 0:
-                print(f"El {self.tipo_vehiculo} {self.marca} se ha detenido por falta de combustible.")
-                break
+        print("🛣️ Iniciando trayecto...")
+        time.sleep(1)
+        while self.combustible > 0:
+            print(f"⛽ Combustible restante: {self.combustible}%")
+            self.combustible -= 1
+            time.sleep(0.2)
+            if self.combustible == 10:
+                print(f"🚨 ¡Solo queda el 10%! Debes ir a una gasolinera pronto.")
+        print(f"\n❌ Fin del trayecto. El {self.tipo} {self.marca} se apagó por falta de combustible.")
+        print("💀 Te has quedado varado... Llama a una grúa o busca ayuda.")
 
 class Moto(Vehiculo):
-    def __init__(self, marca, nivel_combustible):
-        super().__init__(marca, "moto", nivel_combustible)
+    def __init__(self, marca, combustible):
+        super().__init__(marca, "moto", combustible)
 
 class Carro(Vehiculo):
-    def __init__(self, marca, nivel_combustible):
-        super().__init__(marca, "carro", nivel_combustible)
+    def __init__(self, marca, combustible):
+        super().__init__(marca, "carro", combustible)
 
 def obtener_datos_vehiculo():
-    marca = input("Introduce la marca del vehículo: ")
-    tipo = input("Introduce el tipo de vehículo (moto/carro): ").lower()
-    nivel_combustible = int(input("Introduce el nivel de combustible (%): "))
-
-    if tipo == "moto":
-        return Moto(marca, nivel_combustible)
-    elif tipo == "carro":
-        return Carro(marca, nivel_combustible)
+    marca = input("🔤 Introduce la marca del vehículo: ").capitalize()
+    tipo = input("🚘 Introduce el tipo de vehículo (carro/moto): ").lower()
+    try:
+        combustible = int(input("⛽ Introduce el nivel de combustible (%): "))
+        if combustible < 0 or combustible > 100:
+            raise ValueError("❌ El nivel de combustible debe estar entre 0% y 100%.")
+    except ValueError:
+        raise ValueError("❌ Debes ingresar un número válido de combustible entre 0 y 100.")
+    
+    if tipo == "carro":
+        return Carro(marca, combustible)
+    elif tipo == "moto":
+        return Moto(marca, combustible)
     else:
-        raise ValueError("Tipo de vehículo no válido.")
+        raise ValueError("❌ Tipo de vehículo no válido.")
 
 try:
     vehiculo = obtener_datos_vehiculo()
