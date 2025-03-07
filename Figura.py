@@ -20,7 +20,6 @@ class Cuadrado(FiguraGeometrica):
         return self.lado ** 2
 
 
-# ✅ Prueba con input
 figura = input("¿Quieres calcular el área de un Triángulo o Cuadrado? ").strip().lower()
 
 if figura == "triangulo":

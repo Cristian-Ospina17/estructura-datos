@@ -24,7 +24,6 @@ class Cliente(Usuario):
         print(f"{self.nombreDeUsuario} está realizando una compra.")
 
 
-# ✅ Prueba con input
 tipo = input("¿Eres Administrador o Cliente? ").strip().lower()
 
 nombreDeUsuario = input("Crea tu nombre de usuario: ")

@@ -36,7 +36,6 @@ class Refrigerador(Electrodomestico):
             print("El congelador también está funcionando.")
 
 
-# ✅ Prueba con input
 tipo = input("¿Lavadora o Refrigerador? ").strip().lower()
 
 marca = input("Marca: ")

@@ -26,7 +26,6 @@ class Desarrollador(Empleado):
         print(f"{self.nombre} escribe código en {self.lenguaje}.")
 
 
-# ✅ Prueba con input
 tipo = input("¿Eres Gerente o Desarrollador? ").strip().lower()
 
 nombre = input("Nombre: ")
