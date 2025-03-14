@@ -4,8 +4,6 @@ continuar: bool = True
 def agregar_valor (clave:str, valor:str):
     persona.update({clave:valor})
 
-#agregar_valor('nombre','juan')
-#print(persona)
 
 def eliminar_valor (clave)-> None:
    persona.pop(clave) 

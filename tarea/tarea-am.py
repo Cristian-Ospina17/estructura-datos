@@ -24,6 +24,6 @@ def triangulo_numeros(n):
         for j in range(1, i + 1):
             print(multiplicar(i, j), end=" ")
         print()
-        # Ejemplo de uso
+        
 n = int(input("Ingrese la altura del triángulo: "))
 triangulo_numeros(n)
