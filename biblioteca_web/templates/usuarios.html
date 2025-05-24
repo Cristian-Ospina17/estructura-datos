@@ -1,0 +1,12 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+<h2>Gestión de Usuarios</h2>
+<form method="post">
+  Nombre: <input name="nombre"><br>
+  <button type="submit">Agregar</button>
+</form>
+<ul>
+  {% for usuario in usuarios %}
+    <li>{{ usuario.nombre }}</li>
+  {% endfor %}
+</ul>

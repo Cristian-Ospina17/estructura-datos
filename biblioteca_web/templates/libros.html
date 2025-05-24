@@ -1,0 +1,14 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+<h2>Gestión de Libros</h2>
+<form method="post">
+  Título: <input name="titulo"><br>
+  Autor: <input name="autor"><br>
+  Género: <input name="genero"><br>
+  <button type="submit">Agregar</button>
+</form>
+<ul>
+  {% for libro in libros %}
+    <li>{{ libro.titulo }} - {{ libro.autor }} ({{ libro.genero }})</li>
+  {% endfor %}
+</ul>

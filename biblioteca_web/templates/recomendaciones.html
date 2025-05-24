@@ -1,0 +1,17 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+<h2>Recomendaciones</h2>
+<form method="get">
+  Usuario:
+  <select name="usuario">
+    {% for u in usuarios %}
+      <option value="{{ u.id }}">{{ u.nombre }}</option>
+    {% endfor %}
+  </select>
+  <button type="submit">Ver Recomendaciones</button>
+</form>
+<ul>
+  {% for libro in recomendaciones %}
+    <li>{{ libro }}</li>
+  {% endfor %}
+</ul>

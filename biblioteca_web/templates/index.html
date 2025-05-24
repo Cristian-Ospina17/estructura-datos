@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestión de Biblioteca</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a2d9d5c6c1.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="navbar">
+        <h1>📚 Biblioteca Web</h1>
+    </div>
+
+    <div class="container">
+        <h2>Bienvenido al sistema de gestión de biblioteca</h2>
+        <p>Gestiona libros, usuarios y préstamos. Además, recibe recomendaciones inteligentes de libros basadas en el historial de usuarios.</p>
+
+        <div class="card-grid">
+            <a href="/libros" class="card">
+                <i class="fas fa-book"></i>
+                <h3>Libros</h3>
+                <p>Agregar, eliminar o buscar libros disponibles.</p>
+            </a>
+            <a href="/usuarios" class="card">
+                <i class="fas fa-user"></i>
+                <h3>Usuarios</h3>
+                <p>Registrar nuevos usuarios o consultar existentes.</p>
+            </a>
+            <a href="/operaciones" class="card">
+                <i class="fas fa-exchange-alt"></i>
+                <h3>Operaciones</h3>
+                <p>Registrar préstamos y devoluciones.</p>
+            </a>
+            <a href="/recomendaciones" class="card">
+                <i class="fas fa-lightbulb"></i>
+                <h3>Recomendaciones</h3>
+                <p>Ver sugerencias de libros personalizadas.</p>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

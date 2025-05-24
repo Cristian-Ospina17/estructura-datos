@@ -1,0 +1,28 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+<h2>Registro de Operaciones</h2>
+<form method="post">
+  Usuario:
+  <select name="usuario">
+    {% for u in usuarios %}
+      <option value="{{ u.id }}">{{ u.nombre }}</option>
+    {% endfor %}
+  </select><br>
+  Libro:
+  <select name="libro">
+    {% for l in libros %}
+      <option value="{{ l.id }}">{{ l.titulo }}</option>
+    {% endfor %}
+  </select><br>
+  Tipo:
+  <select name="tipo">
+    <option value="prestamo">Préstamo</option>
+    <option value="devolucion">Devolución</option>
+  </select><br>
+  <button type="submit">Registrar</button>
+</form>
+<ul>
+  {% for op in operaciones %}
+    <li>{{ op.tipo }} - Usuario: {{ op.id_usuario }} | Libro: {{ op.id_libro }} | Fecha: {{ op.fecha }}</li>
+  {% endfor %}
+</ul>
